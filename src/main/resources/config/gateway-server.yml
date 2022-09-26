@@ -1,0 +1,36 @@
+server:
+  port: 8072
+ 
+eureka:
+  instance:
+    preferIpAddress: true
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://eurekaserver:8070/eureka/
+      
+ 
+spring:
+  cloud:
+    loadbalancer.ribbon.enabled: false
+    gateway:
+    #서비스 디스커버리에 등록된 서비스를 기반으로 게이트웨이가 경로 생성하도록 설
+      discovery.locator:
+        enabled: true
+        lowerCaseServiceId: true
+      routes:
+      - id: w-board-service
+        uri: lb://w-board-service
+        predicates:
+        - Path=/wom/**
+        filters:
+        - RewritePath=/wom/(?<path>.*), /$\{path}
+    
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+        
+        
