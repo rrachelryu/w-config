@@ -1,23 +1,20 @@
 spring:
-  application:
-    name: config-server
-  profiles:
-    active: native #, git, vault
   cloud:
     config:
       server:
-        encrypt.enabled: false
-        native:
-          search-locations: classpath:/config
         git:
-          uri: https://github.com/xxrachel/w-config.git
-          searchPaths: wboardservice
-        vault:
-          port: 8200
-          host: 127.0.0.1
-          kvVersion: 2
-          profile-separator: /
-          backend: w-board-service
+          uri: https://github.com/xxchloe/w-config.git
+          username: dev.rachelxx@gmail.com
+          password: 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
+          search-paths: config/**
+          default-label: master
+        bootstrap: true
+      enabled: true
+   
+  application:
+    name: config-server
+        
+   
 server:
   port: 8071
   
