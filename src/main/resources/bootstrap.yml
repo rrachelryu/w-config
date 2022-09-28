@@ -5,7 +5,7 @@ spring:
         git:
           uri: https://github.com/xxchloe/w-config.git
           username: dev.rachelxx@gmail.com
-          password: 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
+          password: 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
           search-paths: config/**
           default-label: master
         bootstrap: true
